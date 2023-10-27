@@ -129,12 +129,7 @@ const Page = () => {
                           Find a Truck
                         </TabsTrigger>
                       </TabsList>
-                      <div className="ml-auto mr-4">
-                        <Button>
-                          <PlusCircledIcon className="mr-2 h-4 w-4" />
-                          Post 
-                        </Button>
-                      </div>
+
                     </div>
                     <TabsContent
                       value="load"
@@ -143,7 +138,7 @@ const Page = () => {
                       <div className="flex items-center justify-between">
                         <div className="space-y-1">
                           <h2 className="text-2xl font-semibold tracking-tight">
-                            Trucks Which are available
+                            MarketPlace Data Which are available
                           </h2>
                           <p className="text-sm text-muted-foreground">
                             Top picks for you. Updated eventually.
@@ -157,9 +152,9 @@ const Page = () => {
                       <div className="grid grid-cols-2 gap-4 h-[400px] overflow-y-auto">
                       
                         <ScrollBar/>
-                        {TabTrigger == 'load'?<CardHolder data={loadData} filterState={stateSearch} filterType={type}/> :''}
-                        {TabTrigger == 'truck'?<CardHolder data={truckData} filterState={stateSearch} filterType={type} />:''}
-                        {TabTrigger == 'wareHouse'?<CardHolder data={wareHouseData} filterState={stateSearch} filterType={type}/>:''}
+                        {TabTrigger == 'load'?<CardHolder data={loadData} filterState={stateSearch} filterType={type} set={'load'}/> :''}
+                        {TabTrigger == 'truck'?<CardHolder data={truckData} filterState={stateSearch} filterType={type} set={'truck'}/>:''}
+                        {TabTrigger == 'wareHouse'?<CardHolder data={wareHouseData} filterState={stateSearch} filterType={type} set={'wareHouse'}/>:''}
                       </div>
                       </ScrollArea>
                     </Tabs>

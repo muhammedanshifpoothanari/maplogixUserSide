@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import CardComponent from "./card";
 
-const CardHolder = ({ data, filterState, filterType }: any) => {
+const CardHolder = ({ data, filterState, filterType ,set}: any) => {
   const [filteredData, setFilteredData] = useState([]);
 
   useEffect(() => {
@@ -9,17 +9,17 @@ const CardHolder = ({ data, filterState, filterType }: any) => {
       // Filter by state or location
       const filtered = data.filter(
         (item: any) =>
-          item.startingPoint === filterState.toLowerCase() ||
-          item.location === filterState.toLowerCase()
+          item.startingPoint === filterState ||
+          item.location === filterState
       );
       setFilteredData(filtered);
     } else if (filterType) {
       // Filter by loadType, wareHouseType, or truckType
       const filtered = data.filter(
         (item: any) =>
-          item.loadType === filterType.toLowerCase() ||
-          item.wareHouseType === filterType.toLowerCase() ||
-          item.truckType === filterType.toLowerCase()
+          item.loadType === filterType ||
+          item.wareHouseType === filterType ||
+          item.truckType === filterType
       );
       setFilteredData(filtered);
     } else {
@@ -50,6 +50,7 @@ const CardHolder = ({ data, filterState, filterType }: any) => {
 
         return (
           <CardComponent
+            set={set}
             key={index}
             title={title}
             description={description}

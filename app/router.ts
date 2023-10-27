@@ -1,7 +1,7 @@
 import GetUser from "./providers/getUser";
 
 async function getLoadData() {
-    const res = await fetch('http://localhost:3001/loads',{
+    const res = await fetch('http://51.20.9.171:8081/loads',{
         method:'GET',
         next: { revalidate: 0 },
         headers: {

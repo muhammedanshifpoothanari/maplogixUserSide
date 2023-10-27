@@ -11,6 +11,7 @@ import {
 } from "@/components/ui/card";
 
 interface CardProps {
+  set: string;
   title: string;
   description: string;
   content: string;
@@ -18,6 +19,8 @@ interface CardProps {
 }
 
 function useCardComponent(initialProps: CardProps) {
+  console.log('useCardComponent!!!!!!!!!!!!!!!!!!!!!!!!!', initialProps);
+  
     const [props, setProps] = useState(initialProps);
   
     const setTitle = (newTitle: string) => {
@@ -49,21 +52,55 @@ function useCardComponent(initialProps: CardProps) {
 const CardComponent: React.FC<CardProps> = (props) => {
     const { props: cardProps, setTitle, setDescription, setContent, setFooter } =
     useCardComponent(props);
-  
+  if(cardProps.set === 'load'){
   return (
-    <Card className=" w-[350px] card-container">
+    <Card className=" w-[350px] h-[240px] card-container gap-5">
       <CardHeader>
         <CardTitle>{cardProps.title}</CardTitle>
-        <CardDescription>{cardProps.description}</CardDescription>
+        <CardDescription>📌 {cardProps.description}</CardDescription>
       </CardHeader>
       <CardContent>
-        <p>{cardProps.content}</p>
+        <div className="flex gap-10">
+        <p style={{ fontSize: '50px' }}>🚛</p>
+      <p>truck type: {cardProps.content}</p>
+        </div>
+     
       </CardContent>
       <CardFooter>
-        <p>{cardProps.footer}</p>
+      <div className="flex gap-10">
+      <p style={{ fontSize: '30px' }}>📍</p>
+        <p>location: {cardProps.footer}</p>
+        </div>
       </CardFooter>
     </Card>
+  
   );
+  }else if(cardProps.set === 'truck') {
+    return (
+      <Card className=" w-[350px] h-[240px] card-container gap-5">
+        <CardHeader>
+          <CardTitle>{cardProps.title}</CardTitle>
+          <CardDescription>📌 {cardProps.description}</CardDescription>
+        </CardHeader>
+        <CardContent>
+          <div className="flex gap-10">
+          <p style={{ fontSize: '50px' }}>🚛</p>
+        <p>truck type: {cardProps.content}</p>
+          </div>
+       
+        </CardContent>
+        <CardFooter>
+        <div className="flex gap-10">
+        <p style={{ fontSize: '30px' }}>📍</p>
+          <p>location: {cardProps.footer}</p>
+          </div>
+        </CardFooter>
+      </Card>
+    
+    );
+  } else {
+
+  }
 };
 
 export default CardComponent;
